@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <div class="mb-4">
+      <%= render 'layouts/header' %>
+      <%= flash[:notice] %>
+    </div>
     <%= yield %>
   </body>
 </html>

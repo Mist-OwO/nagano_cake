@@ -1,0 +1,82 @@
+<header class="fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <% if admin_signed_in? %>
+        <%= link_to 'ながのケーキ', admin_root_path, class: "navbar-brand" %>
+      <% else %>
+        <%= link_to 'ながのケーキ', root_path, class: "navbar-brand" %>
+      <% end %>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Taggle navigaion">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" style>
+        <ul class="navbar-nav ml-auto">
+          <% if customer_signed_in? %>
+            <li class="nav-item">
+              <%= link_to customer_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-user"></i>マイページ
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to items_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-utensils"></i>商品一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to cart_items_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-users"></i>カート
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-out-alt"></i>ログアウト
+              <% end %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to admin_items_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-utensils"></i>商品一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to  admin_customers_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-users"></i>会員一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_root_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-utensils"></i>注文履歴一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-utensils"></i>ジャンル一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-out-alt"></i>ログアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to about_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-link"></i>About
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-user-plus"></i>新規登録
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_customer_session_path , class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-in-alt"></i>ログイン
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
