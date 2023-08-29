@@ -1,0 +1,35 @@
+<div class="container p-3">
+  <div class="row">
+    <%#= render 'public/shared/header.html.erb' %>
+
+  <div class="col-md-3 col-md-offset-1">
+    <%#= render 'public/items/genre_search.html.erb' %>
+  </div>
+
+  <div class="col-md-4 col-md-offset-1">
+    <div class="item-details">
+      <%= image_tag @item.image, size: "300x200" %>
+    </div>
+  </div>
+
+    <div class="col-md-4">
+    <div class="item-details">
+      <h3><%= @item.name %></h3>
+      <p><%= @item.introduction %></p>
+      <p>¥<%= @item.price %>(税込)</p>
+
+      <%= form_with model: CartItem.new, url: cart_items_path, method: :post do |f| %>
+
+        <%= f.select :amount, [[1,1], [2,2], [3,3], [4,4], [5,5]], include_blank: "個数選択" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+
+      <% end %>
+
+    </div>
+  </div>
+
+    <%#= render 'public/shared/footer.html.erb' %>
+  </div>
+</div>

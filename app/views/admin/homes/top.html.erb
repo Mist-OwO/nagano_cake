@@ -1,0 +1,18 @@
+<h3>注文履歴一覧</h3>
+<table class="table table-bordered bg-light mt-3">
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at %></td>
+        <td><%= link_to order.customer.family_name + order.customer.first_name, admin_order_path(order.id) %></td>
+        <td><%= order.order_items.sum(:amount) %></td>
+      </tr>
+    <% end %>
+  </tbody>
